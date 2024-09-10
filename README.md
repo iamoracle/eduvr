@@ -1,1 +1,1 @@
-# eduvr
+[# eduvr-frontend](.next) [# eduvr-frontend](node_modules) [# eduvr-frontend](public) [# eduvr-frontend](src) [# eduvr-frontend](.env) [# eduvr-frontend](.gitignore) [# eduvr-frontend](components.json) [# eduvr-frontend](next-env.d.ts) [# eduvr-frontend](next.config.mjs) [# eduvr-frontend](package.json) [# eduvr-frontend](postcss.config.mjs) [# eduvr-frontend](<README 2.md>) [# eduvr-frontend](README.md) [# eduvr-frontend](tailwind.config.ts) [# eduvr-frontend](tsconfig.json) [# eduvr-frontend](yarn-error.log) [# eduvr-frontend](yarn.lock)
