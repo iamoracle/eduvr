@@ -4,10 +4,9 @@ import { createEmptyMediaStream } from "@/utils/stream";
 import Peer from "peerjs";
 import { useEffect, useRef } from "react";
 
-const useAdminPeer = () => {
+const useAdminPeer = (sessionId: string) => {
   const remoteRef = useRef<any>(null);
   const currentPeer = useRef<any>(null);
-  const sessionId = "sessionIdhhh";
 
   const call = (remotePeerId: string) => {
     console.log("Calling " + remotePeerId);

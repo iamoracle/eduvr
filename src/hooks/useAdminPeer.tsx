@@ -4,7 +4,7 @@ import { createEmptyMediaStream } from "@/utils/stream";
 import Peer from "peerjs";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const useAdminPeer = () => {
+const useAdminPeer = (sessionId: string) => {
   const localRef = useRef<any>(null);
 
   const [callStates, setCallStates] = useState<any>([]);
@@ -12,14 +12,15 @@ const useAdminPeer = () => {
     typeof window !== "undefined" ? createEmptyMediaStream() : null
   );
 
-  console.log(stream);
-
   const getStream = useCallback(() => {
     return stream;
   }, [stream]);
 
   useEffect(() => {
-    const peer = new Peer("sessionIdhhh");
+    console.log("my stream" + sessionId);
+    if (!sessionId) return;
+
+    const peer = new Peer(sessionId);
 
     peer.on("open", (id: string) => {
       console.log("My session ID is " + id);
@@ -41,7 +42,7 @@ const useAdminPeer = () => {
     peer.on("error", (err) => {
       console.error("Peer error:", err);
     });
-  }, []);
+  }, [sessionId]);
 
   const shareScreen = useCallback(() => {
     navigator.mediaDevices
