@@ -3,8 +3,6 @@ import { useEffect, useMemo, useState } from "react";
 import { getRandomPastelColor } from "@/utils/getRandomPastelColor";
 import parse from "html-react-parser";
 
-import { io } from "socket.io-client";
-
 import {
   createCall,
   createCallParticipant,
@@ -20,10 +18,6 @@ interface Props {
   toggleSideBarState: any;
   sideBarState: boolean;
 }
-
-const socket = io("https://eduvr-ggfbgvc3h2beaafc.eastus-01.azurewebsites.net");
-
-console.log(socket);
 
 const Sidebar: React.FC<Props> = ({ toggleSideBarState, sideBarState }) => {
   const router = useRouter();
@@ -113,7 +107,11 @@ const Sidebar: React.FC<Props> = ({ toggleSideBarState, sideBarState }) => {
                     Anonymous {data.position}
                   </span>
                 </p>
-                <p className={`flex flex-row gap-x-2 ${sideBarState ? "hidden" : "block"}`}>
+                <p
+                  className={`flex flex-row gap-x-2 ${
+                    sideBarState ? "hidden" : "block"
+                  }`}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-[1.12rem] h-w-[1.12rem] text-slate-400 dark:text-slate-500"

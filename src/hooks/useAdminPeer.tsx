@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const useAdminPeer = (sessionId: string) => {
   const localRef = useRef<any>(null);
-  
 
   const [callStates, setCallStates] = useState<any>([]);
   const [stream, setStream] = useState<any>(
@@ -53,7 +52,7 @@ const useAdminPeer = (sessionId: string) => {
       call.answer(_stream);
 
       _callStates.forEach((callState: any, _: any) => {
-        _callStates.peerConnection.getSenders().forEach((sender: any) => {
+        callState.peerConnection.getSenders().forEach((sender: any) => {
           if (
             sender.track.kind === "audio" &&
             _stream.getAudioTracks().length > 0
