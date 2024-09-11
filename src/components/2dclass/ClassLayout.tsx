@@ -14,7 +14,7 @@ const ClassLayout: React.FC<Props> = ({ sideBarState, localRef }) => {
             : "md:pb-[56.25%] pb-[56.25%]"
         }`}
       >
-        <video src="/videos/intro.MOV" ref={localRef} controls></video>
+        <video src="/videos/intro.mp4" ref={localRef} controls></video>
       </div>
     </section>
   );
