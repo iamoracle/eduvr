@@ -47,7 +47,7 @@ const Index = () => {
           <div className="cr_child circle-blue"></div>
         </div>
         <div
-          className={`flex flex-col flex-1 px-4 gap-y-4 ${
+          className={`flex flex-col flex-1 px-8 gap-y-4 ${
             sideBarState
               ? "w-[calc(100%-3.75rem)]"
               : "w-full md:w-[calc(100%-21rem)]"
@@ -58,7 +58,7 @@ const Index = () => {
               <h2 className="text-sm dark:text-slate-300 text-slate-700">
                 You are in 2D Classroom view
               </h2>
-              <button className="bg-black text-sm p-1.5 rounded-md">
+              <button className="dark:bg-black bg-gray-200 shadow_class text-sm py-1.5 px-2.5 rounded-md dark:text-slate-300 text-slate-700">
                 Switch to 3D
               </button>
             </div>

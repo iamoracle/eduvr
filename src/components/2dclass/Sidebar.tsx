@@ -1,7 +1,18 @@
 import { toSvg } from "jdenticon";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getRandomPastelColor } from "@/utils/getRandomPastelColor";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
+
+import {
+  createCall,
+  createCallParticipant,
+  deactivateCall,
+  getAvailablePositions,
+  getCallParticipants,
+  getMyCalls,
+  getStats,
+} from "@/utils/call";
+import { useRouter } from "next/router";
 
 interface Props {
   toggleSideBarState: any;
@@ -9,13 +20,45 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = ({ toggleSideBarState, sideBarState }) => {
-  const [svgString, setsvgString] = useState<string>("");
-  const [backgroundColor, setBackgroundColor] = useState<string>("");
+  const router = useRouter();
+  const { id } = router.query;
+
+  const parsedId = useMemo((): string => {
+    if (!id) return "";
+
+    let _id: string;
+
+    if (typeof id === "object") {
+      _id = id[0];
+    } else {
+      _id = id;
+    }
+
+    return _id;
+  }, [id]);
+
+  const [participants, setparticipants] = useState([]);
+  const [totalparticipants, settotalparticipants] = useState([]);
 
   useEffect(() => {
-    const svg = toSvg("1", 27);
-    setsvgString(svg);
-    setBackgroundColor(getRandomPastelColor());
+    const fetchData = async () => {
+      try {
+        const participants = await getCallParticipants(parsedId);
+
+        const participantCount = participants.length;
+        settotalparticipants(participantCount);
+
+        const updatedParticipants = participants.map((participant:any, index:any) => ({
+          ...participant,
+          svg: toSvg(`${participant.position}`, 25), // Assign SVG, use index or other identifier
+          backgroundColor: getRandomPastelColor() // Assign random pastel color
+        }));
+        setparticipants(updatedParticipants);
+      } catch (error) {
+        console.error("Failed to fetch participants:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   return (
@@ -39,30 +82,34 @@ const Sidebar: React.FC<Props> = ({ toggleSideBarState, sideBarState }) => {
           <span className={`${sideBarState ? "hidden" : "block"}`}>
             Participant
           </span>
-          <span>1</span>
+          <span>{totalparticipants}</span>
         </h2>
       </div>
       <div className="flex flex-col gap-y-4 flex-wrap items-start pt-2 overflow-y-auto h-[calc(100vh-80px)] max-h-[calc(100vh-80px)]">
-        <div className="flex flex-row items-center">
-          <div
-            className="shadow-2xl w-9 h-9 rounded-xl flex justify-center items-center"
-            style={{ background: backgroundColor }}
-          >
-            {parse(svgString)}
-          </div>
-          <p
-            className={`text-sm ml-3 flex flex-col ${
-              sideBarState ? "hidden" : "block"
-            }`}
-          >
-            <span className="text-slate-700 dark:text-slate-300 font-medium">
-              Anonymouns 1
-            </span>
-            <span className="text-xs text-slate-400 dark:text-slate-500">
-              Student
-            </span>
-          </p>
-        </div>
+        {participants.map((data : any, index) => {
+          return (
+            <div className="flex flex-row items-center" key={index}>
+              <div
+                className="shadow-2xl w-9 h-9 rounded-xl flex justify-center items-center"
+                style={{ background: data.backgroundColor }}
+              >
+                {parse(data.svg)}
+              </div>
+              <p
+                className={`text-sm ml-3 flex flex-col ${
+                  sideBarState ? "hidden" : "block"
+                }`}
+              >
+                <span className="text-slate-700 dark:text-slate-300 font-medium">
+                  Anonymouns {data.position}
+                </span>
+                <span className="text-xs text-slate-400 dark:text-slate-500">
+                  Student
+                </span>
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
