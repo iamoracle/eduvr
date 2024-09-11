@@ -1,6 +1,6 @@
 # Introduction
 
-EduVR allows everyone to create unlimited 2D & 3D meeting by minting a passport on-chain. We leverage WebRTC technology to provide free, anonymized, and decentralized meetings. Which allow participants to fully immerse into our VR environment thereby providing an interactive experience.
+EduVR allows everyone to create unlimited 2D & 3D meetings by minting a passport on-chain. We leverage WebRTC technology to provide free, anonymized, and decentralized meetings. Which allow participants to fully immerse into our VR environment thereby providing an interactive experience.
 
 Check our pitch deck: [Slide](https://www.canva.com/design/DAGPT595XII/1eOozHhfIybgTD5-o5PIyA/view?utm_content=DAGPT595XII&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
