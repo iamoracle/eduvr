@@ -57,10 +57,10 @@ const Index = () => {
           <div className="w-full mt-5">
             <div className="flex flex-row items-center justify-between dark:bg-[#2b2f36] bg-white shadow_class rounded-md py-1.5 px-3">
               <h2 className="text-sm dark:text-slate-300 text-slate-700">
-                You are in 2D Classroom view
+                You are in Presentation View
               </h2>
               <button className="dark:bg-black bg-gray-200 shadow_class text-sm py-1.5 px-2.5 rounded-md dark:text-slate-300 text-slate-700">
-                Switch to 3D
+                End Call
               </button>
             </div>
           </div>

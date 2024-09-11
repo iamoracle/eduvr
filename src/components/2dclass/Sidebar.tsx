@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 import { getRandomPastelColor } from "@/utils/getRandomPastelColor";
 import parse from "html-react-parser";
 
+import { io } from "socket.io-client";
+
 import {
   createCall,
   createCallParticipant,
@@ -18,6 +20,10 @@ interface Props {
   toggleSideBarState: any;
   sideBarState: boolean;
 }
+
+const socket = io("https://eduvr-ggfbgvc3h2beaafc.eastus-01.azurewebsites.net");
+
+console.log(socket);
 
 const Sidebar: React.FC<Props> = ({ toggleSideBarState, sideBarState }) => {
   const router = useRouter();
@@ -69,7 +75,7 @@ const Sidebar: React.FC<Props> = ({ toggleSideBarState, sideBarState }) => {
         sideBarState ? "w-[3.75rem] p-3" : "md:w-[21rem] w-[18rem] p-5"
       }`}
     >
-      <div className="mb-4 flex flex-row items-center">
+      <div className="mb-4 flex flex-row items-center mt-3">
         <svg
           className="text-slate-700 dark:text-slate-300 w-5 h-5 mr-1"
           xmlns="http://www.w3.org/2000/svg"

@@ -44,6 +44,10 @@ const Index = () => {
   //   return router.push("/404");
   // }
 
+  const switch3D = () => {
+    router.push(`/class/${id}`)
+  } 
+
   return (
     <div className="bg-[#f4f6f9] dark:bg-[#1c1f24] w-full min-h-screen flex flex-col">
       <div className="cr_container flex flex-col">
@@ -62,7 +66,7 @@ const Index = () => {
             <h2 className="text-sm dark:text-slate-300 text-slate-700">
               You are in 2D Classroom view
             </h2>
-            <button className="dark:bg-black bg-gray-200 shadow_class text-sm py-1.5 px-2.5 rounded-md dark:text-slate-300 text-slate-700">
+            <button onClick={switch3D} className="dark:bg-black hover:dark:bg-black/20 transition-all bg-gray-200 shadow_class text-sm py-1.5 px-2.5 rounded-md dark:text-slate-300 text-slate-700">
               Switch to 3D
             </button>
           </div>
