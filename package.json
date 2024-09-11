@@ -38,6 +38,7 @@
     "breadcrumb": "^1.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "html-react-parser": "^5.1.15",
     "jazzicon": "^1.5.0",
     "jdenticon": "^3.3.0",
     "lucide-react": "^0.436.0",

@@ -1,6 +1,7 @@
 import { toSvg } from "jdenticon";
 import { useEffect, useState } from "react";
 import { getRandomPastelColor } from "@/utils/getRandomPastelColor";
+import parse from 'html-react-parser';
 
 interface Props {
     sideBarTrigger: any,
@@ -12,7 +13,7 @@ const Sidebar: React.FC<Props> = ({sideBarTrigger, sideBar}) => {
   const [backgroundColor, setBackgroundColor] = useState<string>("");
 
   useEffect(() => {
-    const svg = toSvg("2", 50);
+    const svg = toSvg("1", 27);
     setsvgString(svg);
     setBackgroundColor(getRandomPastelColor());
   }, []);
@@ -46,25 +47,7 @@ const Sidebar: React.FC<Props> = ({sideBarTrigger, sideBar}) => {
             className="shadow-2xl w-9 h-9 rounded-xl flex justify-center items-center"
             style={{ background: backgroundColor }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 50 50"
-            >
-              <path
-                fill="#e3e3e3"
-                d="M20 15L15 10L20 5L25 10ZM25 10L30 5L35 10L30 15ZM30 35L35 40L30 45L25 40ZM25 40L20 45L15 40L20 35ZM10 25L5 20L10 15L15 20ZM35 20L40 15L45 20L40 25ZM40 25L45 30L40 35L35 30ZM15 30L10 35L5 30L10 25Z"
-              />
-              <path
-                fill="#2e5e8c"
-                d="M5 15L5 5L10 5ZM35 5L45 5L45 10ZM45 35L45 45L40 45ZM15 45L5 45L5 40Z"
-              />
-              <path
-                fill="#5991c7"
-                d="M15 15L25 15L25 25L15 25ZM21.5 24L24 19L19 19ZM35 15L35 25L25 25L25 15ZM26 21.5L31 24L31 19ZM35 35L25 35L25 25L35 25ZM28.5 26L26 31L31 31ZM15 35L15 25L25 25L25 35ZM24 28.5L19 26L19 31Z"
-              />
-            </svg>
+            {parse(svgString)}
           </div>
           <p
             className={`text-sm ml-3 flex flex-col ${

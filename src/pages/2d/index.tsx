@@ -1,20 +1,6 @@
 import ClassLayout from "@/components/2dclass/ClassLayout";
-import { Navbar } from "@/components/class/Nav";
 import { useCallback, useState } from "react";
 import Sidebar from "@/components/2dclass/Sidebar";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { RocketIcon } from "@radix-ui/react-icons"
-import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [sideBar, setSideBar] = useState(false);
@@ -30,7 +16,7 @@ const Index = () => {
         <div className="cr_child circle-blue"></div>
       </div>
       <div
-        className={`flex flex-col flex-1 px-4 gap-y-4 ${
+        className={`flex flex-col flex-1 px-8 gap-y-4 ${
           sideBar
             ? "w-[calc(100%-3.75rem)]"
             : "w-full md:w-[calc(100%-21rem)]"
@@ -39,7 +25,7 @@ const Index = () => {
         <div className="w-full mt-5">
           <div className="flex flex-row items-center justify-between dark:bg-[#2b2f36] bg-white shadow_class rounded-md py-1.5 px-3">
             <h2 className="text-sm dark:text-slate-300 text-slate-700">You are in 2D Classroom view</h2>
-            <button className="bg-black text-sm p-1.5 rounded-md">Switch to 3D</button>
+            <button className="bg-black text-sm py-1.5 px-2.5 rounded-md dark:text-slate-300 text-slate-700 text-nowrap">Switch to 3D</button>
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center my-auto">
