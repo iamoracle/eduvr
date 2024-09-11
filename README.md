@@ -15,7 +15,7 @@ We understand that existing meeting software are expensive and often comes with 
 
 # Solution
 
-Our solution is a free, private, decentralized and open 2D and 3D on-chain application that provides an immersive experience, which allow us to incorporate 3D models and element to offer more interactive way for the hosts and participants to engage. Users can fully immerse themselves, and pick their character of their choice and seat position.
+Our solution is a free, private, decentralized and open 2D & 3D on-chain application that provides an immersive experience, which allow us to incorporate 3D models and element to offer more interactive way for the hosts and participants to engage. Users can fully immerse themselves, and pick their character of their choice and seat position.
 
 ![Pictures 1.png](https://cdn.dorahacks.io/static/files/191a45ca3f170a8063e576741888639c.png)
 
