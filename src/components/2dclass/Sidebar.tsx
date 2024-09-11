@@ -85,10 +85,10 @@ const Sidebar: React.FC<Props> = ({ toggleSideBarState, sideBarState }) => {
           <span>{totalparticipants}</span>
         </h2>
       </div>
-      <div className="flex flex-col gap-y-4 flex-wrap items-start pt-2 overflow-y-auto h-[calc(100vh-80px)] max-h-[calc(100vh-80px)]">
+      <div className="flex flex-col gap-y-4 flex-nowrap items-start pt-2 overflow-y-auto h-[calc(100vh-80px)] max-h-[calc(100vh-80px)]">
         {participants.map((data : any, index) => {
           return (
-            <div className="flex flex-row items-center" key={index}>
+            <div className="flex flex-row items-center w-full" key={index}>
               <div
                 className="shadow-2xl w-9 h-9 rounded-xl flex justify-center items-center"
                 style={{ background: data.backgroundColor }}
