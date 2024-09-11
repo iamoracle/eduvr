@@ -50,6 +50,23 @@ const useAdminPeer = (sessionId: string) => {
       setCallStates(_callStates);
       const _stream = getStream();
       call.answer(_stream);
+
+      _callStates.forEach((callState: any, _: any) => {
+        callState.peerConnection.getSenders().forEach((sender: any) => {
+          if (
+            sender.track.kind === "audio" &&
+            _stream.getAudioTracks().length > 0
+          ) {
+            sender.replaceTrack(_stream.getAudioTracks()[0]);
+          }
+          if (
+            sender.track.kind === "video" &&
+            _stream.getVideoTracks().length > 0
+          ) {
+            sender.replaceTrack(_stream.getVideoTracks()[0]);
+          }
+        });
+      });
     });
 
     peer.on("connection", (connection) => {
