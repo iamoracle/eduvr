@@ -26,9 +26,9 @@ const Index = () => {
 
   const { id } = router.query;
 
-  const { call, isLoading, isTeacher } = useCallRouter(id);
+  const { call, isLoading } = useCallRouter(id);
 
-  const { remoteRef } = useClientPeer(call.session ?? "");
+  const { remoteRef } = useClientPeer(call.session ?? "", call, isLoading);
 
   const toggleSideBarState = useCallback(() => {
     setSideBarState((state) => !state);

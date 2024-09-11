@@ -4,7 +4,11 @@ import { createEmptyMediaStream } from "@/utils/stream";
 import Peer from "peerjs";
 import { useEffect, useRef } from "react";
 
-const useAdminPeer = (sessionId: string) => {
+const useAdminPeer = (
+  sessionId: string,
+  callObject: any,
+  isLoading: boolean
+) => {
   const remoteRef = useRef<any>(null);
   const currentPeer = useRef<any>(null);
 
@@ -35,7 +39,7 @@ const useAdminPeer = (sessionId: string) => {
   };
 
   useEffect(() => {
-    if (!sessionId) return;
+    if (!sessionId || !callObject?._id || isLoading) return;
 
     const peer = new Peer();
 
@@ -53,7 +57,7 @@ const useAdminPeer = (sessionId: string) => {
     });
 
     currentPeer.current = peer;
-  }, [sessionId]);
+  }, [sessionId, callObject, isLoading]);
 
   return { remoteRef };
 };
