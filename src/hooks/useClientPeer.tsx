@@ -23,6 +23,7 @@ const useAdminPeer = (
     call.on("stream", (remoteStream: any) => {
       console.log("Received stream");
       remoteRef.current.srcObject = remoteStream;
+      console.log(remoteRef);
 
       remoteRef.current.onloadedmetadata = () => {
         remoteRef.current.play();
