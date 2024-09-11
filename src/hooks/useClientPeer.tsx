@@ -43,18 +43,20 @@ const useAdminPeer = (
 
     const peer = new Peer("", {
       config: {
-        iceServers: {
-          urls: [
-            "stun:stun.cloudflare.com:3478",
-            "turn:turn.cloudflare.com:3478?transport=udp",
-            "turn:turn.cloudflare.com:3478?transport=tcp",
-            "turns:turn.cloudflare.com:5349?transport=tcp",
-          ],
-          username:
-            "31ac8a36e3e7988ab03c283323a51c3ce11de9cb302c1caa79b582b6cd8de980",
-          credential:
-            "f3b7490d92640855689faa349b9f472e65cb2a0289c3e271386698ae17a0aaac",
-        },
+        iceServers: [
+          {
+            urls: [
+              "stun:stun.cloudflare.com:3478",
+              "turn:turn.cloudflare.com:3478?transport=udp",
+              "turn:turn.cloudflare.com:3478?transport=tcp",
+              "turns:turn.cloudflare.com:5349?transport=tcp",
+            ],
+            username:
+              "31ac8a36e3e7988ab03c283323a51c3ce11de9cb302c1caa79b582b6cd8de980",
+            credential:
+              "f3b7490d92640855689faa349b9f472e65cb2a0289c3e271386698ae17a0aaac",
+          },
+        ],
       },
     });
 
