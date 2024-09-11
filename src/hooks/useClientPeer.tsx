@@ -35,6 +35,8 @@ const useAdminPeer = (sessionId: string) => {
   };
 
   useEffect(() => {
+    if (!sessionId) return;
+
     const peer = new Peer();
 
     peer.on("open", (id) => {
@@ -51,7 +53,7 @@ const useAdminPeer = (sessionId: string) => {
     });
 
     currentPeer.current = peer;
-  }, []);
+  }, [sessionId]);
 
   return { remoteRef };
 };
