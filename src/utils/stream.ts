@@ -11,7 +11,7 @@ const createEmptyAudioTrack = () => {
   const dst: any = oscillator.connect(ctx.createMediaStreamDestination());
   oscillator.start();
   const track = dst.stream.getAudioTracks()[0];
-  return Object.assign(track, { enabled: false });
+  return Object.assign(track, { enabled: true });
 };
 
 const createEmptyVideoTrack = ({ width, height }: any) => {

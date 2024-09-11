@@ -15,12 +15,12 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { RocketIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import useAdminPeer from "@/hooks/useAdminPeer";
+import useClientPeer from "@/hooks/useClientPeer";
 
 const Index = () => {
   const [sideBarState, setSideBarState] = useState<boolean>(false);
 
-  const { getStream, shareScreen, localRef } = useAdminPeer();
+  const { remoteRef } = useClientPeer();
 
   const toggleSideBarState = useCallback(() => {
     setSideBarState((state) => !state);
@@ -50,7 +50,7 @@ const Index = () => {
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center my-auto">
-          <ClassLayout localRef={localRef} sideBarState={sideBarState} />
+          <ClassLayout localRef={remoteRef} sideBarState={sideBarState} />
         </div>
         <div className="w-full mb-6">
           <div className="flex flex-row gap-x-2">
@@ -65,10 +65,7 @@ const Index = () => {
                 <path d="m12 4.929-.707.707 1.414 1.414.707-.707a3.007 3.007 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-2.122 2.121c-1.133 1.133-3.109 1.133-4.242 0L10.586 12l-1.414 1.414.707.707c.943.944 2.199 1.465 3.535 1.465s2.592-.521 3.535-1.465L19.071 12a5.008 5.008 0 0 0 0-7.071 5.006 5.006 0 0 0-7.071 0z"></path>
               </svg>
             </div>
-            <div
-              onClick={shareScreen}
-              className="w-9 h-9 rounded-full glass_bg_base flex justify-center items-center"
-            >
+            <div className="w-9 h-9 rounded-full glass_bg_base flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-5 h-5 dark:text-slate-300 text-slate-700"
