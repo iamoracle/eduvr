@@ -67,7 +67,7 @@ const useCallRouter = (id: any) => {
     }
   }, [call, isLoading]);
 
-  return { isLoading, call, isTeacher };
+  return { isLoading, call, isTeacher, parsedId };
 };
 
 export default useCallRouter;

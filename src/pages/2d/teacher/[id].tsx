@@ -1,6 +1,6 @@
 import ClassLayout from "@/components/2dclass/ClassLayout";
 import { Navbar } from "@/components/class/Nav";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Sidebar from "@/components/2dclass/Sidebar";
 
 import {
@@ -19,6 +19,9 @@ import useAdminPeer from "@/hooks/useAdminPeer";
 import useCallRouter from "@/hooks/useCallRouter";
 import { useRouter } from "next/router";
 import Preloader from "@/components/Preloader";
+import { deactivateCall } from "@/utils/call";
+import { toast, Toaster } from "sonner";
+import ShareLinkUrl from "@/components/2dclass/ShareLinkUrl";
 
 const Index = () => {
   const [sideBarState, setSideBarState] = useState<boolean>(false);
@@ -26,7 +29,7 @@ const Index = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { call, isLoading, isTeacher } = useCallRouter(id);
+  const { call, isLoading, isTeacher, parsedId } = useCallRouter(id);
 
   const { shareScreen, localRef } = useAdminPeer(call.session ?? "");
 
@@ -39,6 +42,19 @@ const Index = () => {
   if (isLoading || !call?._id) {
     return <Preloader />;
   }
+
+  const EndCall = async () => {
+    try {
+      await deactivateCall(parsedId);
+      router.push("/callend");
+    } catch (error: any) {
+      toast("Error", {
+        description: error?.response?.data?.message,
+      });
+    }
+  };
+
+ 
 
   return (
     isTeacher && (
@@ -59,8 +75,11 @@ const Index = () => {
               <h2 className="text-sm dark:text-slate-300 text-slate-700">
                 You are in Presentation View
               </h2>
-              <button className="dark:bg-black bg-gray-200 shadow_class text-sm py-1.5 px-2.5 rounded-md dark:text-slate-300 text-slate-700">
-                End Call
+              <button
+                onClick={EndCall}
+                className="dark:bg-black bg-gray-200 shadow_class text-sm py-1.5 px-2.5 rounded-md dark:text-slate-300 text-slate-700"
+              >
+                End Classroom
               </button>
             </div>
           </div>
@@ -69,17 +88,7 @@ const Index = () => {
           </div>
           <div className="w-full mb-6">
             <div className="flex flex-row gap-x-2">
-              <div className="w-9 h-9 rounded-full glass_bg_base flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 dark:text-slate-300 text-slate-700"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M8.465 11.293c1.133-1.133 3.109-1.133 4.242 0l.707.707 1.414-1.414-.707-.707c-.943-.944-2.199-1.465-3.535-1.465s-2.592.521-3.535 1.465L4.929 12a5.008 5.008 0 0 0 0 7.071 4.983 4.983 0 0 0 3.535 1.462A4.982 4.982 0 0 0 12 19.071l.707-.707-1.414-1.414-.707.707a3.007 3.007 0 0 1-4.243 0 3.005 3.005 0 0 1 0-4.243l2.122-2.121z"></path>
-                  <path d="m12 4.929-.707.707 1.414 1.414.707-.707a3.007 3.007 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-2.122 2.121c-1.133 1.133-3.109 1.133-4.242 0L10.586 12l-1.414 1.414.707.707c.943.944 2.199 1.465 3.535 1.465s2.592-.521 3.535-1.465L19.071 12a5.008 5.008 0 0 0 0-7.071 5.006 5.006 0 0 0-7.071 0z"></path>
-                </svg>
-              </div>
+              <ShareLinkUrl />
               <div
                 onClick={shareScreen}
                 className="w-9 h-9 rounded-full glass_bg_base flex justify-center items-center"
@@ -107,7 +116,10 @@ const Index = () => {
                   <path d="M8.011 12.132a3.993 3.993 0 003.877 3.877l-3.877-3.877z"></path>
                 </svg>
               </div>
-              <div className="w-9 h-9 rounded-full glass_bg_base flex justify-center items-center">
+              <div
+                onClick={EndCall}
+                className="w-9 h-9 rounded-full glass_bg_base flex justify-center items-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 text-red-600"
@@ -121,6 +133,7 @@ const Index = () => {
             </div>
           </div>
         </div>
+        <Toaster />
         <Sidebar
           toggleSideBarState={toggleSideBarState}
           sideBarState={sideBarState}
