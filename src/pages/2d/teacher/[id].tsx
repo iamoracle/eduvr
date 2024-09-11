@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import useAdminPeer from "@/hooks/useAdminPeer";
 import useCallRouter from "@/hooks/useCallRouter";
 import { useRouter } from "next/router";
+import Preloader from "@/components/Preloader";
 
 const Index = () => {
   const [sideBarState, setSideBarState] = useState<boolean>(false);
@@ -36,7 +37,7 @@ const Index = () => {
   console.log(isLoading, call?._id);
 
   if (isLoading || !call?._id) {
-    return <p>loading</p>;
+    return <Preloader />;
   }
 
   return (

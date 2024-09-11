@@ -19,6 +19,8 @@ import useClientPeer from "@/hooks/useClientPeer";
 import { useRouter } from "next/router";
 import useCallRouter from "@/hooks/useCallRouter";
 
+import Preloader from "@/components/Preloader";
+
 const Index = () => {
   const [sideBarState, setSideBarState] = useState<boolean>(false);
 
@@ -35,7 +37,7 @@ const Index = () => {
   }, []);
 
   if (isLoading || !call?._id) {
-    return <p>loading</p>;
+    return <Preloader />;
   }
 
   // if (isTeacher) {
